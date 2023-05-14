@@ -165,9 +165,7 @@ function displayMessage(type, message) {
 function renderHighscore() {
     userInitials.textContent = localStorage.getItem("initials");
     userScore.textContent = localStorage.getItem("score");
-  };
-  
-// renderHighscore();
+};
 
 submitBtn.addEventListener('click', function() {
     var userInfo = document.querySelector('#user-info').value;
