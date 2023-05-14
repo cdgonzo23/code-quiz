@@ -1,3 +1,9 @@
+:root {
+    --dark: #04015a;
+    --light: #5affc5cf;
+    --splash: #D99718;
+}
+
 *, html {
     margin: 0;
     padding: 0;
@@ -5,14 +11,9 @@
     background-color: var(--dark);
 }
 
-:root {
-    --dark: #04015a;
-    --light: #5affc5cf;
-    --splash: #D99718;
-}
-
 header {
     display: flex;
+    justify-content: space-between;
     padding: 8px;
     color: var(--light);
     background-color: var(--light);
@@ -29,6 +30,16 @@ nav {
 nav:hover {
     background-color: var(--splash);
     color: var(--dark);
+    border: 4px var(--dark);
+    border-style: groove;
+    border-radius: 5px;
+}
+
+.timer {
+    text-align: center;
+    padding: 8px;
+    color: var(--dark);
+    background-color: var(--splash);
     border: 4px var(--dark);
     border-style: groove;
     border-radius: 5px;
@@ -53,7 +64,8 @@ h2 {
     margin-bottom: 50px;
 }
 
-p {
+p, 
+#msg {
     color: var(--dark);
     font-size: 18px;
     font-weight: bold;
@@ -95,4 +107,10 @@ input {
     font-weight: bolder;
     font-size: 20px;
     text-align: center;
+    align-content: center;
+    max-width: 100px;
+}
+
+span {
+    background-color: var(--splash);
 }

@@ -7,8 +7,7 @@ var endEl = document.querySelector('#end');
 var timeEl = document.querySelector('.timer');
 var nextQuestion = document.querySelector('.selection');
 var playAgain = document.querySelector('.restart')
-var userScore = 0;
-// var userInfo = 
+var quizScore = 0;
 var questionArr = [
     {
         question: 'Delaware',
@@ -67,6 +66,7 @@ startBtn.addEventListener('click', function() {
     quizEl.style.display = null;
     startEl.style.display = "none";
     endEl.style.display = "none";
+    timeEl.style.display = null;
 
     var displayQuestion = document.getElementById('question');
     var displayAnswer1 = document.getElementById('answer-1');
@@ -74,8 +74,36 @@ startBtn.addEventListener('click', function() {
     var displayAnswer3 = document.getElementById('answer-3');
     var displayAnswer4 = document.getElementById('answer-4');
     var resultEl = document.getElementById('answer-result');
-
     resultEl.style.display = "none"
+
+    var secondsLeft = 30
+
+    function updateCountdown(seconds) {
+        var label = 'seconds';
+        if (secondsLeft === 1) {
+            label = 'second'
+        };
+        timeEl.textContent = secondsLeft + " " + label + " left";
+    };
+
+    function setTime() {
+        updateCountdown()
+        var timerInterval = setInterval(function() {
+            secondsLeft--;
+
+        updateCountdown()
+
+        if (secondsLeft === 0) {
+            clearInterval(timerInterval);
+            quizEl.style.display = "none";
+            timeEl.style.display = "none";
+            endEl.style.display = null;
+        }
+        }, 1000);
+    };
+
+    setTime();
+
 
     var questionIndex = 0;
 
@@ -91,12 +119,14 @@ startBtn.addEventListener('click', function() {
     
     nextQuestion.addEventListener('click', function(event) {
         questionIndex++
-        var element = event.target;
-        if (element.matches(questionArr[questionIndex].answer)) {
-            resultEl.style.display = null;
-            resultEl.textContent = 'correct'
-            userScore += 5;
-        };
+        // var element = event.target;
+        // if (element.matches(questionArr[questionIndex].answer[0])) {
+        //     resultEl.style.display = null;
+        //     resultEl.textContent = 'correct'
+        //     quizScore += 5;
+        // } else {
+        //     secondsLeft - 5;
+        // };
         if (questionIndex !== 10) {
             quizDisplay()
             // console.log(questionIndex);
@@ -106,21 +136,51 @@ startBtn.addEventListener('click', function() {
             endEl.style.display = null;
             startEl.style.display = 'none';
             quizEl.style.display = 'none'
-            console.log(userScore * 2);
+            timeEl.style.display = 'none'
+            console.log(quizScore * secondsLeft)
         };
     });
 });
-            // tell conditional what user selected questionArr[questionIndex].answer and check it matches the answer specified in question object
+// tell conditional what user selected questionArr[questionIndex].answer and check it matches the answer specified in question object
+
+
 
 var highScoresEl = document.querySelector('.scores')
-var submitScore = document.querySelector('.submit')
-submitScore.textContent = 'Submit';
+submitBtn.textContent = 'Submit';
+
+
+var userInitials = document.querySelector('#user-initials')
+
+var msgDiv = document.querySelector('#msg');
+msgDiv.style.display = 'none'
+
+function displayMessage(type, message) {
+    msgDiv.textContent = message;
+    msgDiv.setAttribute("class", type);
+};
+
+function renderHighscore() {
+    userInitials.textContent = localStorage.getItem("initials");
+    // userScore.textContent = localStorage.getItem("score");
+  };
+  
+renderHighscore();
 
 submitBtn.addEventListener('click', function() {
-    quizEl.style.display = "none";
-    startEl.style.display = "none";
-    endEl.style.display = "none";
-    highScoresEl.style = null;
+    var userInfo = document.querySelector('#user-info').value
+    if (userInfo === "") {
+        msgDiv.style.display = null;
+        displayMessage("error","Please Enter Initials!");
+    } else {
+        quizEl.style.display = "none";
+        startEl.style.display = "none";
+        endEl.style.display = "none";
+        highScoresEl.style = null;
+        timeEl.style.display = 'none';
+        localStorage.setItem("initials", userInfo);
+        // localStorage.setItem("score", userScore);
+    }
+    
 });
 
 var scoresPage = document.querySelector('#scores-page');
@@ -130,6 +190,7 @@ scoresPage.addEventListener('click', function() {
     startEl.style.display = "none";
     endEl.style.display = "none";
     highScoresEl.style = null;
+    timeEl.style.display = 'none';
 });
 
 playAgain.addEventListener('click', function(){
@@ -137,4 +198,5 @@ playAgain.addEventListener('click', function(){
     startEl.style.display = null;
     endEl.style.display = "none";
     highScoresEl.style = "none";
+    timeEl.style.display = "none";
 });
