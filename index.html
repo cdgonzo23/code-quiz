@@ -9,14 +9,20 @@
   </head>
   <body>
     <header>
-        <nav>View Highscores</nav>
+        <nav id="scores-page">View Highscores</nav>
         <h3 class='timer'></h3>
     </header>
     <main>
       <section id="start">
-        <h2>JavaScript Fundamentals Challenge</h2>
-        <p>Attempt as many of the following questions within the time limit. If you answer incorrectly you will be penalized 15 seconds. Good Luck!</p>
-        <button  id="start-btn">Start Quiz</button>
+        <div class="intro-title">
+            <h2>State Capital Challenge</h2>
+        </div>
+        <div class="intro-par">
+            <p>Select as many of the correct state capitals within the time limit. If you answer incorrectly you will be penalized 15 seconds. Good Luck!</p>
+        </div>
+        <div class="start-button">
+            <button  id="start-btn">Start Quiz</button>
+        </div>
       </section>
       <section id="quiz" style="display: none;">
         <div>
@@ -31,12 +37,12 @@
         </div>
       </section>
       <section id="end" style="display: none;">
-        <h2 id="submit">You Finished the Quiz!</h2>
-        <p class="score"></p>
-        <input type="text">Enter Your Initials Here</input>
+        <h2 id="end">You Finished the Quiz!</h2>
+        <p>Enter Your Initials Here</p>
+        <input type="text" style="text-transform:uppercase" id="user-info"></input>
         <button type="submit" class="submit"></button>
       </section>
-      <section class="scores">
+      <section class="scores" style="display: none;">
         <h2>High Scores</h2>
         <table>
             <tr>
