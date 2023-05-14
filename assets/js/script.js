@@ -76,7 +76,7 @@ startBtn.addEventListener('click', function() {
     var resultEl = document.getElementById('answer-result');
     resultEl.style.display = "none"
 
-    var secondsLeft = 30
+    var secondsLeft = 20;
 
     function updateCountdown(seconds) {
         var label = 'seconds';
@@ -98,6 +98,9 @@ startBtn.addEventListener('click', function() {
             quizEl.style.display = "none";
             timeEl.style.display = "none";
             endEl.style.display = null;
+        };
+        if (quizEl.style.display === "none") {
+            clearInterval(timerInterval);
         }
         }, 1000);
     };
@@ -136,20 +139,20 @@ startBtn.addEventListener('click', function() {
             endEl.style.display = null;
             startEl.style.display = 'none';
             quizEl.style.display = 'none'
-            timeEl.style.display = 'none'
-            console.log(quizScore * secondsLeft)
+            timeEl.style.display = 'none';
+            console.log(quizScore)
+            return setTime();
         };
     });
 });
 // tell conditional what user selected questionArr[questionIndex].answer and check it matches the answer specified in question object
 
-
-
 var highScoresEl = document.querySelector('.scores')
 submitBtn.textContent = 'Submit';
 
-
-var userInitials = document.querySelector('#user-initials')
+var scoresList = document.querySelector('#scores-list')
+var userInitials = document.querySelector('#user-initials');
+var userScore = document.querySelector('#user-score');
 
 var msgDiv = document.querySelector('#msg');
 msgDiv.style.display = 'none'
@@ -161,13 +164,19 @@ function displayMessage(type, message) {
 
 function renderHighscore() {
     userInitials.textContent = localStorage.getItem("initials");
-    // userScore.textContent = localStorage.getItem("score");
+    userScore.textContent = localStorage.getItem("score");
   };
   
-renderHighscore();
+// renderHighscore();
 
 submitBtn.addEventListener('click', function() {
-    var userInfo = document.querySelector('#user-info').value
+    var userInfo = document.querySelector('#user-info').value;
+    var highScore = quizScore
+    function displayScore() {
+        localStorage.setItem("initials", userInfo);
+        localStorage.setItem("score", highScore);
+        renderHighscore();
+    }
     if (userInfo === "") {
         msgDiv.style.display = null;
         displayMessage("error","Please Enter Initials!");
@@ -177,11 +186,16 @@ submitBtn.addEventListener('click', function() {
         endEl.style.display = "none";
         highScoresEl.style = null;
         timeEl.style.display = 'none';
-        localStorage.setItem("initials", userInfo);
-        // localStorage.setItem("score", userScore);
+        displayScore();
     }
     
 });
+
+var clearScores = document.querySelector('.clear');
+
+clearScores.addEventListener('click', function() {
+    scoresList.style.display = 'none'
+})
 
 var scoresPage = document.querySelector('#scores-page');
 

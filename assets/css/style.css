@@ -65,7 +65,8 @@ h2 {
 }
 
 p, 
-#msg {
+#msg,
+li {
     color: var(--dark);
     font-size: 18px;
     font-weight: bold;
