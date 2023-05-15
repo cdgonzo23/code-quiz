@@ -102,6 +102,11 @@ button:hover {
     text-align: center;
 }
 
+#answer-result {
+    padding: 5px;
+    margin-top: 10px;
+}
+
 input {
     margin-bottom: 20px;
     background-color: var(--light);
@@ -114,4 +119,8 @@ input {
 
 span {
     background-color: var(--splash);
+}
+
+.hide{
+    display: none;
 }
