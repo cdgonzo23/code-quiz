@@ -122,14 +122,15 @@ function quizDisplay() {
 
 nextQuestion.addEventListener("click", function (event) {
     var element = event.target;
-    questionIndex++;
     if (element.matches(questionArr[questionIndex].answer)) {
-      resultEl.style.display = null;
-      resultEl.textContent = "correct";
-      quizScore += 5;
+        resultEl.style.display = null;
+        resultEl.textContent = "Correct!";
+        quizScore += 5;
     } else {
         secondsLeft - 5;
+        resultEl.textContent = "False";
     }
+    questionIndex++;
     if (questionIndex !== 10) {
       quizDisplay();
       // console.log(questionIndex);
@@ -140,7 +141,6 @@ nextQuestion.addEventListener("click", function (event) {
       quizEl.style.display = "none";
       timeEl.style.display = "none";
       console.log(quizScore);
-      return setTime();
     };
 });
 // tell conditional what user selected questionArr[questionIndex].answer and check it matches the answer specified in question object
@@ -188,11 +188,11 @@ submitBtn.addEventListener("click", function () {
   }
 });
 
-// var clearScores = document.querySelector('.clear');
+var clearScores = document.querySelector('.clear');
 
-// clearScores.addEventListener('click', function() {
-//     scoresListEl.style.display = 'none'
-// })
+clearScores.addEventListener('click', function() {
+    scoresListEl.style.display = 'none'
+})
 
 var scoresPage = document.querySelector("#scores-page");
 
