@@ -216,6 +216,7 @@ function restart() {
   secondsLeft = 20
   questionIndex = 0;
   quizScore = 0;
+  highscore = []
 };
 // event listeners
 startBtn.addEventListener("click", start);
