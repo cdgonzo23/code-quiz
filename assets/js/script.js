@@ -155,20 +155,17 @@ function displayMessage(type, message) {
   msgDiv.setAttribute("class", type);
 };
 
-highscoreIndex = 0
+
 function renderHighscore() {
   scoresListEl.classList.remove('hide')
-  // for (let i = 0; i < highscore.length; i++) {
+  for (let i = 0; i < highscore.length; i++) {
     // create the li
     var li = document.createElement("li");
     // add content to the li
-    li.textContent = highscore[highscoreIndex].name.toUpperCase() +  ': ' + highscore[highscoreIndex].score;
+    li.textContent = highscore[i].name.toUpperCase() +  ': ' + highscore[i].score;
     // append the li to scoresListEl
-    highscoreIndex++
-
     scoresListEl.append(li);
-
-  // };
+  };
 };
 
 function displayScore() {
@@ -210,8 +207,7 @@ function scores() {
   endEl.style.display = "none";
   highScoresEl.style.display = null;
   timeEl.style.display = "none";
-  // displayScore();
-  scoresListEl.classList.remove('hide')
+  displayScore();
 };
 
 function restart() {
@@ -220,6 +216,7 @@ function restart() {
   secondsLeft = 20
   questionIndex = 0;
   quizScore = 0;
+  // highscore = []
 };
 // event listeners
 startBtn.addEventListener("click", start);
