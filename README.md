@@ -15,4 +15,4 @@ In this project I learned the importance of planning from the beginning, I belie
 [Repository](https://github.com/cdgonzo23/code-quiz)
 
 ### Screenshots
-![Screenshot](./assets/images/code-quiz.mp4)
+![Screenshot](./assets/images/Screenshot.png)
