@@ -209,7 +209,7 @@ function scores() {
   endEl.style.display = "none";
   highScoresEl.style.display = null;
   timeEl.style.display = "none";
-  scoresListEl.classList.remove('hide');
+  renderHighscore();
 };
 
 function restart() {
